@@ -24,6 +24,28 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, "script", "facebook-jssdk"));
         </script>
+		    <script src="js/jquery-3.3.1.min.js"></script>
+			<script>
+				$(document).ready(function () {
+					$('#keyword').val('Java');
+					$('#search').on('click', function () {
+						var keyword = $('#keyword').val();
+						var googleAPI = "https://www.googleapis.com/books/v1/volumes?q=" + keyword + "&maxResults=5&projection=lite";
+
+						$.getJSON(googleAPI, function (response) {
+							$("#result").empty();
+							for (var i = 0; i < response.items.length; i++) {
+								var item = response.items[i];
+								var str = "<li>";
+								str += "<img src='" + item.volumeInfo.imageLinks.thumbnail + "' width='60' height='80'>";
+								str += "<p><b>Name：" + item.volumeInfo.title + "</b></p>";
+								str += "</li>";
+								$("#result").append(str);
+							}
+						});
+					});
+				});
+			</script>
         <div class="container">
             <div class="row">
                 <p class="hidden-sm hidden-xs">&nbsp;</p>
@@ -47,6 +69,9 @@
                     </div>
                 </div>
             </div>
+			<input type="text" name="keyword" id="keyword" />
+			<button id="search">Search</button>
+			<ul id="result"></ul>
             <div style="text-align: center;">
                 <a href="https://github.com/CPCFred/government_procurement_act" target="_blank">網站原始碼</a> |
                 資料來源：107經濟部專研中心第002期採購基礎班學員手冊教材題庫</a>
