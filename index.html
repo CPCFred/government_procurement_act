@@ -30,15 +30,16 @@
 					$('#keyword').val('Java');
 					$('#search').on('click', function () {
 						var keyword = $('#keyword').val();
-						var googleAPI = "https://www.googleapis.com/books/v1/volumes?q=" + keyword + "&maxResults=5&projection=lite";
+						var googleAPI = "https://raw.githubusercontent.com/CPCFred/government_procurement_act/master/qa.json";
 
 						$.getJSON(googleAPI, function (response) {
 							$("#result").empty();
 							for (var i = 0; i < response.items.length; i++) {
 								var item = response.items[i];
 								var str = "<li>";
-								str += "<img src='" + item.volumeInfo.imageLinks.thumbnail + "' width='60' height='80'>";
-								str += "<p><b>Name：" + item.volumeInfo.title + "</b></p>";
+								str += "<p><b>" + item.quiz + "' width='60' height='80'>";
+								str += "<p><b>Name：" + item.options + "</b></p>";
+								str += "<p><b>Answer：" + item.answer + "</b></p>";
 								str += "</li>";
 								$("#result").append(str);
 							}
