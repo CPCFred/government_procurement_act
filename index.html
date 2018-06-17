@@ -69,7 +69,7 @@
 				$("#result").empty();
 				for (var i = 0; i < response.items.length; i++) {
 					var item = response.items[i];
-						if (item == keyword) {
+						if (response.items[i][quiz] == keyword) {
 						var str = "<li>";
 						str += "<p><b>" + item.quiz + " ";
 						str += "<p><b>Name：" + item.options.1 + "</b></p>";
