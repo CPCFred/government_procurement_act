@@ -57,31 +57,7 @@
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="js/jquery-3.3.1.min.js"></script>
-		<script>
-			$(document).ready(function () {
-				$('#keyword').val('(第2條) 下列何者不是採購法所稱採購？');
-				$('#search').on('click', function () {
-					var keyword = $('#keyword').val();
-					var googleAPI = "https://raw.githubusercontent.com/CPCFred/government_procurement_act/master/qa.json";
-
-				$.getJSON(googleAPI, function (response) {
-				$("#result").empty();
-				for (var i = 0; i < response.items.length; i++) {
-					var item = response.items[i];
-						if (response.items[i][quiz] == keyword) {
-						var str = "<li>";
-						str += "<p><b>" + item.quiz + " ";
-						str += "<p><b>Name：" + item.options + "</b></p>";
-						str += "<p><b><h5 style='color: red;'>Answer：" + item.answer + "</h5></b></p>";
-						str += "</li>";
-						$("#result").append(str);
-						}
-					}
-				});
-				});
-			});
-		
+        <script>
         var currentIndex = 0, qa = [], total = 0;
         $(function() {
           $.getJSON('qa.json', {}, function(r) {
