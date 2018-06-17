@@ -38,10 +38,7 @@
 					var item = response.items[i];
 					var str = "<li>";
 					str += "<p><b>" + item.quiz + " ";
-					str += "<p><b>(1)" + item.options.1 + "</b></p>";
-					str += "<p><b>(2)" + item.options.2 + "</b></p>";
-					str += "<p><b>(3)" + item.options.3 + "</b></p>";
-					str += "<p><b>(4)" + item.options.4 + "</b></p>";
+					str += "<p><b>Name：" + item.options.1 + "</b></p>";
 					str += "<p><b><h5 style='color: red;'>Answer：" + item.answer + "</h5></b></p>";
 					str += "</li>";
 					$("#result").append(str);
