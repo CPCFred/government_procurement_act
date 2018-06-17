@@ -7,7 +7,6 @@
         <meta property="og:title" content="經濟部 專業人員研究中心 第002期 採購專業人員基礎訓練班 線上測驗">
         <meta property="og:description" content="以 107/06/15 產出的題庫為基礎，提供線上題庫練習">
         <meta property="og:type" content="website">
-        <script src="js/jquery-3.3.1.min.js"></script>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <style>
         input[type='radio'] { transform: scale(2); }
@@ -58,6 +57,31 @@
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				$('#keyword').val('');
+				$('#search').on('click', function () {
+					var keyword = $('#keyword').val();
+					var googleAPI = "https://raw.githubusercontent.com/CPCFred/government_procurement_act/master/qa.json";
+
+				$.getJSON(googleAPI, function (response) {
+				$("#result").empty();
+				for (var i = 0; i < response.items.length; i++) {
+					var item = response.items[i];
+						if (item == keyword) {
+						var str = "<li>";
+						str += "<p><b>" + item.quiz + " ";
+						str += "<p><b>Name：" + item.options.1 + "</b></p>";
+						str += "<p><b><h5 style='color: red;'>Answer：" + item.answer + "</h5></b></p>";
+						str += "</li>";
+						$("#result").append(str);
+						}
+					}
+				});
+				});
+			});
+		</script>
         <script>
         var currentIndex = 0, qa = [], total = 0;
         $(function() {
@@ -108,27 +132,5 @@
           $('div#qa-status').html('第 ' + (currentIndex + 1) + ' 題 / 共 ' + total + ' 題');
         }
         </script>
-		<script>
-			$(document).ready(function () {
-				$('#keyword').val('');
-				$('#search').on('click', function () {
-					var keyword = $('#keyword').val();
-					var googleAPI = "https://raw.githubusercontent.com/CPCFred/government_procurement_act/master/qa.json";
-
-				$.getJSON(googleAPI, function (response) {
-				$("#result").empty();
-				for (var i = 0; i < response.items.length; i++) {
-					var item = response.items[i];
-					var str = "<li>";
-					str += "<p><b>" + item.quiz + " ";
-					str += "<p><b>Name：" + item.options.1 + "</b></p>";
-					str += "<p><b><h5 style='color: red;'>Answer：" + item.answer + "</h5></b></p>";
-					str += "</li>";
-					$("#result").append(str);
-					}
-				});
-				});
-			});
-		</script>
     </body>
 </html>
